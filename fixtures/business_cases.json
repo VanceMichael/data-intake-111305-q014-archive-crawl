@@ -1,17 +1,17 @@
 [
   {
-    "name": "empty_proof",
-    "situation": "一段确实为空而另一段请求失败",
-    "observable": "只有成功范围有覆盖证据"
+    "name": "rename_reuse",
+    "situation": "旧DN后来被另一个entryUUID使用",
+    "observable": "区分实体与当前目录地址"
   },
   {
-    "name": "expired_restart",
-    "situation": "分区工作未完快照过期",
-    "observable": "另开轮次而不混拼"
+    "name": "change_gap",
+    "situation": "11后先收到13",
+    "observable": "缺少12时不发布伪连续目录"
   },
   {
-    "name": "incremental_overlap",
-    "situation": "全量期间增量插入更新",
-    "observable": "切换目录不回滚增量或误删"
+    "name": "attribute_operations",
+    "situation": "多值属性增删及更名交错",
+    "observable": "原文、作用范围和演进原因可追查"
   }
 ]

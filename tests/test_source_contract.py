@@ -13,12 +13,13 @@ class SourceContractTests(unittest.TestCase):
         records = scenario["source_records"]
         with serve(scenario) as origin:
             client = Client(origin.base_url)
-            self.assertEqual(records[0]["snapshot"], records[1]["snapshot"])
-            self.assertNotEqual(records[0]["snapshot"], records[2]["snapshot"])
-            self.assertEqual(client.fetch(records[0]["next"]).status, 410)
-            empty = json.loads(client.fetch("/ranges/empty").body)
-            self.assertEqual(empty["items"], [])
-            self.assertTrue(empty["complete"])
+            self.assertEqual(records[0]["last_change_sequence"], 10)
+            self.assertEqual(records[2]["sequence"] - records[1]["sequence"], 2)
+            original = client.fetch(records[0]["path"]).body.decode()
+            rename = client.fetch(records[1]["path"]).body.decode()
+            self.assertIn("entryUUID: uuid-1", original)
+            self.assertIn("\n  folded", original)
+            self.assertIn("changetype: modrdn", rename)
 
     def test_every_record_has_the_declared_source_identity(self):
         scenario = load_scenario()

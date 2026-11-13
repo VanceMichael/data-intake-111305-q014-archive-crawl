@@ -1,39 +1,31 @@
 {
   "identity_fields": [
-    "snapshot",
-    "key"
+    "directory",
+    "export",
+    "sequence"
   ],
   "source_records": [
     {
-      "snapshot": "snap-a",
-      "key": "A001",
-      "title": "卷宗一",
-      "range": [
-        "A000",
-        "A100"
-      ],
-      "expires_at": "2026-11-10T10:05:00Z",
-      "next": "/ranges/a2"
+      "directory": "union-a",
+      "export": "full-1",
+      "sequence": 0,
+      "path": "/exports/full.ldif",
+      "kind": "snapshot",
+      "last_change_sequence": 10
     },
     {
-      "snapshot": "snap-a",
-      "key": "A099",
-      "title": "卷宗九十九",
-      "range": [
-        "A000",
-        "A100"
-      ],
-      "expires_at": "2026-11-10T10:05:00Z"
+      "directory": "union-a",
+      "export": "change-11",
+      "sequence": 11,
+      "path": "/exports/rename.ldif",
+      "kind": "changes"
     },
     {
-      "snapshot": "snap-b",
-      "key": "A050",
-      "title": "新增卷宗",
-      "range": [
-        "A000",
-        "A100"
-      ],
-      "expires_at": "2026-11-10T10:10:00Z"
+      "directory": "union-a",
+      "export": "change-13",
+      "sequence": 13,
+      "path": "/exports/modify.ldif",
+      "kind": "changes"
     }
   ],
   "portal": {
@@ -44,35 +36,26 @@
       "json": {
         "items": [
           {
-            "snapshot": "snap-a",
-            "key": "A001",
-            "title": "卷宗一",
-            "range": [
-              "A000",
-              "A100"
-            ],
-            "expires_at": "2026-11-10T10:05:00Z",
-            "next": "/ranges/a2"
+            "directory": "union-a",
+            "export": "full-1",
+            "sequence": 0,
+            "path": "/exports/full.ldif",
+            "kind": "snapshot",
+            "last_change_sequence": 10
           },
           {
-            "snapshot": "snap-a",
-            "key": "A099",
-            "title": "卷宗九十九",
-            "range": [
-              "A000",
-              "A100"
-            ],
-            "expires_at": "2026-11-10T10:05:00Z"
+            "directory": "union-a",
+            "export": "change-11",
+            "sequence": 11,
+            "path": "/exports/rename.ldif",
+            "kind": "changes"
           },
           {
-            "snapshot": "snap-b",
-            "key": "A050",
-            "title": "新增卷宗",
-            "range": [
-              "A000",
-              "A100"
-            ],
-            "expires_at": "2026-11-10T10:10:00Z"
+            "directory": "union-a",
+            "export": "change-13",
+            "sequence": 13,
+            "path": "/exports/modify.ldif",
+            "kind": "changes"
           }
         ]
       },
@@ -111,37 +94,28 @@
       "body": "partial",
       "truncate": true
     },
-    "/ranges/a2": {
-      "status": 410,
-      "json": {
-        "error": "snapshot_expired",
-        "snapshot": "snap-a"
-      }
+    "/exports/full.ldif": {
+      "body": "version: 1\n\ndn: ou=Old,dc=synthetic,dc=invalid\nobjectClass: organizationalUnit\nentryUUID: uuid-1\nou: Old\ndescription: a long\n  folded value\n\n",
+      "content_type": "text/plain"
     },
-    "/ranges/empty": {
-      "json": {
-        "snapshot": "snap-b",
-        "range": [
-          "B000",
-          "B100"
-        ],
-        "items": [],
-        "complete": true
-      }
+    "/exports/rename.ldif": {
+      "body": "dn: ou=Old,dc=synthetic,dc=invalid\nchangetype: modrdn\nnewrdn: ou=New\ndeleteoldrdn: 1\n\n",
+      "content_type": "text/plain"
+    },
+    "/exports/modify.ldif": {
+      "body": "dn: ou=New,dc=synthetic,dc=invalid\nchangetype: modify\nreplace: description\ndescription:: 5ZCI5oiQ5py65p6E\n-\n\n",
+      "content_type": "text/plain"
     },
     "/observations/1": {
       "json": {
         "items": [
           {
-            "snapshot": "snap-a",
-            "key": "A001",
-            "title": "卷宗一",
-            "range": [
-              "A000",
-              "A100"
-            ],
-            "expires_at": "2026-11-10T10:05:00Z",
-            "next": "/ranges/a2"
+            "directory": "union-a",
+            "export": "full-1",
+            "sequence": 0,
+            "path": "/exports/full.ldif",
+            "kind": "snapshot",
+            "last_change_sequence": 10
           }
         ]
       }
@@ -150,14 +124,11 @@
       "json": {
         "items": [
           {
-            "snapshot": "snap-a",
-            "key": "A099",
-            "title": "卷宗九十九",
-            "range": [
-              "A000",
-              "A100"
-            ],
-            "expires_at": "2026-11-10T10:05:00Z"
+            "directory": "union-a",
+            "export": "change-11",
+            "sequence": 11,
+            "path": "/exports/rename.ldif",
+            "kind": "changes"
           }
         ]
       }
@@ -166,14 +137,11 @@
       "json": {
         "items": [
           {
-            "snapshot": "snap-b",
-            "key": "A050",
-            "title": "新增卷宗",
-            "range": [
-              "A000",
-              "A100"
-            ],
-            "expires_at": "2026-11-10T10:10:00Z"
+            "directory": "union-a",
+            "export": "change-13",
+            "sequence": 13,
+            "path": "/exports/modify.ldif",
+            "kind": "changes"
           }
         ]
       }
