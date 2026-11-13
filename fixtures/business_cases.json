@@ -1,0 +1,17 @@
+[
+  {
+    "name": "empty_proof",
+    "situation": "一段确实为空而另一段请求失败",
+    "observable": "只有成功范围有覆盖证据"
+  },
+  {
+    "name": "expired_restart",
+    "situation": "分区工作未完快照过期",
+    "observable": "另开轮次而不混拼"
+  },
+  {
+    "name": "incremental_overlap",
+    "situation": "全量期间增量插入更新",
+    "observable": "切换目录不回滚增量或误删"
+  }
+]

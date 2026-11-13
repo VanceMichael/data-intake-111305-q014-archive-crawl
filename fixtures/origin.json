@@ -1,0 +1,182 @@
+{
+  "identity_fields": [
+    "snapshot",
+    "key"
+  ],
+  "source_records": [
+    {
+      "snapshot": "snap-a",
+      "key": "A001",
+      "title": "卷宗一",
+      "range": [
+        "A000",
+        "A100"
+      ],
+      "expires_at": "2026-11-10T10:05:00Z",
+      "next": "/ranges/a2"
+    },
+    {
+      "snapshot": "snap-a",
+      "key": "A099",
+      "title": "卷宗九十九",
+      "range": [
+        "A000",
+        "A100"
+      ],
+      "expires_at": "2026-11-10T10:05:00Z"
+    },
+    {
+      "snapshot": "snap-b",
+      "key": "A050",
+      "title": "新增卷宗",
+      "range": [
+        "A000",
+        "A100"
+      ],
+      "expires_at": "2026-11-10T10:10:00Z"
+    }
+  ],
+  "portal": {
+    "csrf": "form-2026-b"
+  },
+  "routes": {
+    "/feed": {
+      "json": {
+        "items": [
+          {
+            "snapshot": "snap-a",
+            "key": "A001",
+            "title": "卷宗一",
+            "range": [
+              "A000",
+              "A100"
+            ],
+            "expires_at": "2026-11-10T10:05:00Z",
+            "next": "/ranges/a2"
+          },
+          {
+            "snapshot": "snap-a",
+            "key": "A099",
+            "title": "卷宗九十九",
+            "range": [
+              "A000",
+              "A100"
+            ],
+            "expires_at": "2026-11-10T10:05:00Z"
+          },
+          {
+            "snapshot": "snap-b",
+            "key": "A050",
+            "title": "新增卷宗",
+            "range": [
+              "A000",
+              "A100"
+            ],
+            "expires_at": "2026-11-10T10:10:00Z"
+          }
+        ]
+      },
+      "headers": {
+        "ETag": "feed-1"
+      }
+    },
+    "/rate-limited": {
+      "status": 429,
+      "headers": {
+        "Retry-After": "2"
+      },
+      "json": {
+        "error": "quota"
+      }
+    },
+    "/unstable": [
+      {
+        "status": 503,
+        "body": "temporarily unavailable"
+      },
+      {
+        "json": {
+          "items": []
+        }
+      }
+    ],
+    "/range": {
+      "body": "0123456789",
+      "range": true
+    },
+    "/range-ignored": {
+      "body": "0123456789"
+    },
+    "/truncated": {
+      "body": "partial",
+      "truncate": true
+    },
+    "/ranges/a2": {
+      "status": 410,
+      "json": {
+        "error": "snapshot_expired",
+        "snapshot": "snap-a"
+      }
+    },
+    "/ranges/empty": {
+      "json": {
+        "snapshot": "snap-b",
+        "range": [
+          "B000",
+          "B100"
+        ],
+        "items": [],
+        "complete": true
+      }
+    },
+    "/observations/1": {
+      "json": {
+        "items": [
+          {
+            "snapshot": "snap-a",
+            "key": "A001",
+            "title": "卷宗一",
+            "range": [
+              "A000",
+              "A100"
+            ],
+            "expires_at": "2026-11-10T10:05:00Z",
+            "next": "/ranges/a2"
+          }
+        ]
+      }
+    },
+    "/observations/2": {
+      "json": {
+        "items": [
+          {
+            "snapshot": "snap-a",
+            "key": "A099",
+            "title": "卷宗九十九",
+            "range": [
+              "A000",
+              "A100"
+            ],
+            "expires_at": "2026-11-10T10:05:00Z"
+          }
+        ]
+      }
+    },
+    "/observations/3": {
+      "json": {
+        "items": [
+          {
+            "snapshot": "snap-b",
+            "key": "A050",
+            "title": "新增卷宗",
+            "range": [
+              "A000",
+              "A100"
+            ],
+            "expires_at": "2026-11-10T10:10:00Z"
+          }
+        ]
+      }
+    }
+  }
+}
