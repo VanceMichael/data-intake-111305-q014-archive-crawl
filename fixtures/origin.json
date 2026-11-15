@@ -95,15 +95,15 @@
       "truncate": true
     },
     "/exports/full.ldif": {
-      "body": "version: 1\n\ndn: ou=Old,dc=synthetic,dc=invalid\nobjectClass: organizationalUnit\nentryUUID: uuid-1\nou: Old\ndescription: a long\n  folded value\n\n",
+      "body": "version: 1\n\ndn: ou=Old,dc=synthetic,dc=invalid\nobjectClass: organizationalUnit\nentryUUID: uuid-1\nou: Old\ndescription: a long\n  folded value\ndescription;lang-zh:: 5L2g5aW9\nmember: cn=Person,ou=Sub,ou=Old,dc=synthetic,dc=invalid\nmember:< https://policy.invalid/collective\n\ndn: ou=Sub,ou=Old,dc=synthetic,dc=invalid\nobjectClass: organizationalUnit\nentryUUID: uuid-2\nou: Sub\n",
       "content_type": "text/plain"
     },
     "/exports/rename.ldif": {
-      "body": "dn: ou=Old,dc=synthetic,dc=invalid\nchangetype: modrdn\nnewrdn: ou=New\ndeleteoldrdn: 1\n\n",
+      "body": "dn: ou=Old,dc=synthetic,dc=invalid\nchangetype: modrdn\nnewrdn: ou=New\ndeleteoldrdn: 1\n",
       "content_type": "text/plain"
     },
     "/exports/modify.ldif": {
-      "body": "dn: ou=New,dc=synthetic,dc=invalid\nchangetype: modify\nreplace: description\ndescription:: 5ZCI5oiQ5py65p6E\n-\n\n",
+      "body": "dn: ou=New,dc=synthetic,dc=invalid\nchangetype: modify\nadd: description\ndescription: added by sequence 13\n-\ndelete: description\ndescription: added by sequence 13\n-\nreplace: description;lang-zh\ndescription;lang-zh:: 5ZCI5oiQ5pyJ5p6E\n-\n",
       "content_type": "text/plain"
     },
     "/observations/1": {
